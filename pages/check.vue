@@ -1,5 +1,10 @@
 <template>
-  <div>
+  <div class="p-6">
+    <h1 class="text-3xl font-bold text-gray-800 mb-6">Проверка новостей</h1>
+    <p class="text-gray-600 mb-6">
+      Введите текст новости для проверки на достоверность. Наши алгоритмы
+      проанализируют её и определят, содержит ли она фейковую информацию.
+    </p>
     <NewsForm @submit-news="handleSubmit" :is-submitting="isSubmitting" />
 
     <div v-if="status" class="mt-8 animate-fadeIn">

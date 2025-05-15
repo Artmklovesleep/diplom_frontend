@@ -1,11 +1,7 @@
 <template>
-  <div class="bg-white p-6 mb-6 transition-all duration-300">
-    <h2 class="text-2xl font-semibold mb-4 text-gray-800">Проверка новости</h2>
-    <p class="text-gray-600 mb-6">
-      Введите текст новости для проверки на достоверность. Наши алгоритмы
-      проанализируют её и определят, содержит ли она фейковую информацию.
-    </p>
-
+  <div
+    class="bg-white p-6 mb-6 transition-all duration-300 border border-gray-200 rounded-xl"
+  >
     <form @submit.prevent="onSubmit">
       <div class="mb-4">
         <label
