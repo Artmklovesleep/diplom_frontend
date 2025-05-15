@@ -1,14 +1,17 @@
 <template>
-  <div class="h-screen flex flex-col justify-center items-center">
-    <Card class="max-w-sm mx-4 w-full">
-      <CardHeader>
-        <CardTitle class="text-xl">Регистрация</CardTitle>
-        <CardDescription
-          >Введите свои данные для создания аккаунта</CardDescription
-        >
-      </CardHeader>
-      <CardContent>
-        <form @submit="onSubmit" class="space-y-4">
+  <div
+    class="min-h-screen bg-gradient-to-b from-white to-blue-50 w-full flex flex-col justify-center items-center"
+  >
+    <div class="max-w-md mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
+        <div class="text-center mb-6">
+          <h1 class="text-3xl font-bold text-gray-900">Регистрация</h1>
+          <p class="text-sm text-gray-600 mt-2">
+            Введите свои данные для создания аккаунта
+          </p>
+        </div>
+
+        <form @submit.prevent="onSubmit" class="space-y-6">
           <FormField
             name="firstName"
             v-slot="{ componentField }"
@@ -19,8 +22,9 @@
               <FormControl>
                 <Input
                   id="first-name"
-                  placeholder="Максим"
+                  placeholder="Данил"
                   v-bind="componentField"
+                  class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 />
               </FormControl>
               <FormMessage />
@@ -37,8 +41,9 @@
               <FormControl>
                 <Input
                   id="last-name"
-                  placeholder="Петров"
+                  placeholder="Фалалеев"
                   v-bind="componentField"
+                  class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 />
               </FormControl>
               <FormMessage />
@@ -55,9 +60,11 @@
               <FormControl>
                 <Input
                   id="email"
-                  type="text"
-                  placeholder="m@example.com"
+                  type="email"
+                  placeholder="test@test.com"
                   v-bind="componentField"
+                  required
+                  class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 />
               </FormControl>
               <FormMessage />
@@ -72,27 +79,42 @@
             <FormItem v-auto-animate>
               <FormLabel>Пароль</FormLabel>
               <FormControl>
-                <Input id="password" type="text" v-bind="componentField" />
+                <Input
+                  id="password"
+                  type="password"
+                  v-bind="componentField"
+                  required
+                  class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
           </FormField>
 
-          <Button type="submit" class="w-full">
-            <span v-if="!isLoading"> Создать аккаунт </span>
+          <Button
+            type="submit"
+            class="w-full py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-colors duration-300 flex items-center justify-center"
+            :loading="isLoading"
+          >
+            <span v-if="!isLoading">Создать аккаунт</span>
             <div
               v-if="isLoading"
-              class="animate-spin rounded-full h-5 w-5 border-b-2 border-secondary"
+              class="animate-spin h-5 w-5 border-t-2 border-b-2 border-white rounded-full"
             ></div>
           </Button>
         </form>
 
-        <div class="mt-4 text-center text-sm">
+        <div class="mt-6 text-center text-sm text-gray-600">
           Уже есть аккаунт?
-          <NuxtLink to="/login" class="underline">Войти</NuxtLink>
+          <NuxtLink
+            to="/login"
+            class="ml-1 text-blue-600 hover:text-blue-700 underline"
+          >
+            Войти
+          </NuxtLink>
         </div>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   </div>
 </template>
 

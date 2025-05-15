@@ -5,11 +5,7 @@ export default defineNuxtConfig({
   compatibilityDate: "2024-11-01",
   devtools: { enabled: true },
 
-  css: [
-    "~/assets/css/null.css",
-    "~/assets/css/main.css",
-    "~/assets/css/base.scss",
-  ],
+  css: ["~/assets/css/main.css", "~/assets/css/base.scss"],
   vite: {
     plugins: [tailwindcss()],
   },
@@ -26,8 +22,6 @@ export default defineNuxtConfig({
 
       link: [{ rel: "icon", type: "image/svg", href: "/favicon.svg" }],
     },
-    layoutTransition: { name: "layout", mode: "out-in" },
-    pageTransition: { name: "page", mode: "out-in" },
   },
 
   devServer: {

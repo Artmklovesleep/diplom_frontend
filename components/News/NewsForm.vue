@@ -50,7 +50,7 @@
               fill="currentColor"
             ></path>
           </svg>
-          <span v-else class="mr-2">Проверить</span>
+          <span v-else>Проверить</span>
         </button>
       </div>
     </form>
