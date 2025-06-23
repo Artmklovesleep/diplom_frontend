@@ -24,7 +24,7 @@
       </div>
 
       <!-- Статистика использования -->
-      <div class="p-6">
+      <div class="p-6" v-if="statistics && Object.keys(statistics).length > 0">
         <h3 class="text-lg font-medium text-gray-800 mb-4">
           Статистика использования
         </h3>
@@ -35,7 +35,9 @@
               <Shield size="20" class="mr-2" />
               <span class="font-medium">Всего проверок</span>
             </div>
-            <p class="text-2xl font-bold text-gray-800">24</p>
+            <p class="text-2xl font-bold text-gray-800">
+              {{ statistics.total_checks }}
+            </p>
           </div>
 
           <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
@@ -43,7 +45,9 @@
               <AlertTriangle size="20" class="mr-2" />
               <span class="font-medium">Обнаружено фейков</span>
             </div>
-            <p class="text-2xl font-bold text-gray-800">16</p>
+            <p class="text-2xl font-bold text-gray-800">
+              {{ statistics.fake_news }}
+            </p>
           </div>
 
           <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
@@ -51,55 +55,67 @@
               <CheckCircle size="20" class="mr-2" />
               <span class="font-medium">Подтверждено новостей</span>
             </div>
-            <p class="text-2xl font-bold text-gray-800">8</p>
+            <p class="text-2xl font-bold text-gray-800">
+              {{ statistics.confirmed_news }}
+            </p>
           </div>
         </div>
-
-        <!-- Последняя активность -->
-        <!-- <div class="mt-6">
-          <h3 class="text-lg font-medium text-gray-800 mb-4">
-            Последняя активность
-          </h3>
-          <div class="bg-gray-50 rounded-lg border border-gray-200">
-            <ul class="divide-y divide-gray-200">
-              <li class="p-3 flex items-center">
-                <Clock size="16" class="text-gray-500 mr-2" />
-                <span class="text-sm text-gray-600">Проверка новости</span>
-                <span class="ml-auto text-xs text-gray-500"
-                  >Сегодня, 14:32</span
-                >
-              </li>
-              <li class="p-3 flex items-center">
-                <Clock size="16" class="text-gray-500 mr-2" />
-                <span class="text-sm text-gray-600">Вход в систему</span>
-                <span class="ml-auto text-xs text-gray-500"
-                  >Сегодня, 14:30</span
-                >
-              </li>
-              <li class="p-3 flex items-center">
-                <Clock size="16" class="text-gray-500 mr-2" />
-                <span class="text-sm text-gray-600">Проверка новости</span>
-                <span class="ml-auto text-xs text-gray-500">Вчера, 18:45</span>
-              </li>
-            </ul>
-          </div>
-        </div> -->
       </div>
     </div>
   </div>
 </template>
+
 <script setup>
+import { ref, onMounted } from "vue";
 import {
   User,
   Mail,
   Shield,
-  Clock,
   AlertTriangle,
   CheckCircle,
 } from "lucide-vue-next";
-
 definePageMeta({
   layout: "admin",
 });
+
+import { useSanctumUser } from "#imports";
+const { $api } = useNuxtApp();
+
 const user = useSanctumUser();
+const statistics = ref({
+  total_checks: 0,
+  fake_news: 0,
+  confirmed_news: 0,
+});
+
+async function getUserStatistics() {
+  try {
+    // const response = await $api("/history/statistics");
+    const response = await $api("/statistics");
+    if (response && typeof response === "object") {
+      return {
+        total_checks: response.total_checks || 0,
+        fake_news: response.fake_news || 0,
+        confirmed_news: response.confirmed_news || 0,
+      };
+    }
+    return {
+      total_checks: 0,
+      fake_news: 0,
+      confirmed_news: 0,
+    };
+  } catch (error) {
+    console.error("Ошибка получения статистики:", error);
+    return {
+      total_checks: 0,
+      fake_news: 0,
+      confirmed_news: 0,
+    };
+  }
+}
+
+onMounted(async () => {
+  const data = await getUserStatistics();
+  statistics.value = data;
+});
 </script>
