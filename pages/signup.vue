@@ -22,7 +22,7 @@
               <FormControl>
                 <Input
                   id="first-name"
-                  placeholder="Данил"
+                  placeholder="Артем"
                   v-bind="componentField"
                   class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 />
@@ -41,7 +41,7 @@
               <FormControl>
                 <Input
                   id="last-name"
-                  placeholder="Фалалеев"
+                  placeholder="Потапов"
                   v-bind="componentField"
                   class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 />

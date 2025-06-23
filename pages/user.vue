@@ -56,7 +56,7 @@
         </div>
 
         <!-- Последняя активность -->
-        <div class="mt-6">
+        <!-- <div class="mt-6">
           <h3 class="text-lg font-medium text-gray-800 mb-4">
             Последняя активность
           </h3>
@@ -83,7 +83,7 @@
               </li>
             </ul>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
