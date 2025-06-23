@@ -11,7 +11,7 @@
             : 'absolute top-0 left-0 h-full z-50',
         ]"
       >
-        <AppSidebar :items="items" />
+        <AppSidebar :items="items" @toggle-sidebar="toggleSidebar" />
       </SidebarProvider>
     </Transition>
 
@@ -22,7 +22,7 @@
       <!-- Trigger button for sidebar -->
       <button
         @click="toggleSidebar"
-        class="p-4 text-blue-600 focus:outline-none md:hidden"
+        class="p-4 text-blue-600 focus:outline-none md:hidden self-start"
       >
         ☰
       </button>

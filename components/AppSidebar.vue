@@ -4,6 +4,7 @@ import { User, ChevronUp } from "lucide-vue-next";
 import { toast } from "vue-sonner";
 
 const props = defineProps(["items"]);
+const emit = defineEmits(["toggle-sidebar"]);
 
 const route = useRoute();
 
@@ -19,6 +20,9 @@ const isDropdownOpen = ref(false);
 
 function toggleDropdown() {
   isDropdownOpen.value = !isDropdownOpen.value;
+}
+function toggleSidebar() {
+  emit("toggle-sidebar");
 }
 
 async function successLogout() {
@@ -52,7 +56,7 @@ async function logout(data) {
 <template>
   <div class="w-60 border-r border-gray-200 h-screen flex flex-col">
     <!-- Logo -->
-    <div class="p-4 border-b border-gray-200">
+    <div class="p-4 border-b border-gray-200 flex items-center justify-between">
       <NuxtLink
         to="/"
         class="text-xl font-bold text-blue-600 flex items-center"
@@ -60,6 +64,12 @@ async function logout(data) {
         <Shield size="24" class="mr-2" />
         ФейкНет
       </NuxtLink>
+      <button
+        @click="toggleSidebar"
+        class="md:hidden p-2 text-blue-600 hover:text-gray-700"
+      >
+        >
+      </button>
     </div>
 
     <!-- Navigation -->
