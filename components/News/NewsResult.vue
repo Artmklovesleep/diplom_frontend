@@ -2,7 +2,7 @@
   <div
     v-if="status && status !== 'pending'"
     :class="content.bgColor + ' ' + content.borderColor"
-    class="border rounded-lg p-6 shadow-md animate-fadeIn transition-all duration-500"
+    class="border rounded-lg p-6 shadow-md animate-fadeIn transition-all duration-500 overflow-hidden"
   >
     <div class="flex items-center mb-4">
       <component :is="content.icon" size="24" class="mr-3" />
@@ -32,7 +32,7 @@
     <div class="border-t border-gray-200 pt-4 mt-2">
       <h4 class="text-sm font-medium text-gray-700 mb-2">Текст новости:</h4>
       <div
-        class="bg-white p-3 rounded border border-gray-200 text-gray-700 max-h-40 overflow-y-auto text-sm"
+        class="bg-white p-3 rounded border border-gray-200 text-gray-700 max-h-40 overflow-y-auto text-sm whitespace-pre-wrap break-all"
       >
         {{ newsText }}
       </div>

@@ -99,7 +99,11 @@
               <label class="block text-sm font-medium text-gray-700"
                 >Текст новости:</label
               >
-              <p class="mt-1 text-gray-900">{{ selectedItem.text }}</p>
+              <div
+                class="mt-1 text-gray-900 text-sm whitespace-pre-wrap break-all"
+              >
+                {{ selectedItem.text }}
+              </div>
             </div>
 
             <div class="mb-4">
